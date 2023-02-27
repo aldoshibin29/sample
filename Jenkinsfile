@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('version') {
       steps {
-        bat 'Python 3.9.13'
+        bat 'python --version'
       }
     }
 
