@@ -9,7 +9,12 @@ pipeline {
     }
 
     stage('hello') {
+       environment {
+        SECRET_FILE_ID = credentials('secret-file-id')
+        }
       steps {
+        echo "####DISPLAYING SECRET_FILE_ID####"
+	    echo "Global property file: ${SECRET_FILE_ID}"
         bat 'python hello.py'
       }
     }
