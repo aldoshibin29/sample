@@ -29,7 +29,7 @@ pipeline {
         print "${SECRET_FILE_ID}"
         script{
         withCredentials([file(credentialsId:'secret-file-id',usernameVariable: 'username',
-              passwordVariable: 'password'))]){
+              passwordVariable: 'password')]){
             print 'username=' + username + 'password=' + password
         }
         }
