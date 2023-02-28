@@ -29,12 +29,10 @@ pipeline {
         print "${SECRET_FILE_ID}"
         script{
         withCredentials([file(credentialsId:'secret-file-id',variable:'testtt')]){
-            bat'
+            bat'''
                 echo "this $testtt"
                 echo "`cat $testtt`"
-
-
-            '
+            '''
         }
         }
 //         script(withCredentials(SECRET_FILE_ID)
