@@ -15,7 +15,8 @@ pipeline {
       steps {
         echo "####DISPLAYING SECRET_FILE_ID####"
 	    echo "Global property file: ${SECRET_FILE_ID}"
-        sh('curl -u $SECRET_FILE_ID_username:$SECRET_FILE_ID_password')
+	    echo "Running ${SECRET_FILE_ID.username} on ${SECRET_FILE_ID.password}"
+//         sh('curl -u $SECRET_FILE_ID_username:$SECRET_FILE_ID_password')
         bat 'python hello.py'
       }
     }
