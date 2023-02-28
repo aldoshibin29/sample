@@ -4,15 +4,17 @@ pipeline {
   stages {
     stage('version') {
       steps {
-        bat 'python --version'
+        bat '''
+        echo check python
+        python --version'''
       }
     }
 
-    stage('hello') {
-      steps {
-        bat 'python hello.py'
-      }
-    }
+//     stage('hello') {
+//       steps {
+//         bat 'python hello.py'
+//       }
+//     }
 //        stage('Example Deploy') {
 //             when {
 //                 branch 'production'
