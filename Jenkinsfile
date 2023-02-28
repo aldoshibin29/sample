@@ -27,7 +27,18 @@ pipeline {
       steps {
         print("checkprint")
         print "${SECRET_FILE_ID}"
-        bat(script:"python hello.py")
+        script{
+        withCredentials([file(credentialsId:'secret-file-id'],variable:'testtt'){
+            bat'
+                echo "this $testtt"
+                echo "`cat $testtt`"
+
+
+            '
+        }
+        }
+//         script(withCredentials(SECRET_FILE_ID)
+//         bat(script:"python hello.py")
       }
     }
 
