@@ -10,7 +10,7 @@ pipeline {
 
     stage('hello') {
        environment {
-        SECRET_FILE_ID = readCredentialsFile('secret-file-id')
+        SECRET_FILE_ID = withCredentials('secret-file-id')
         }
       steps {
         echo "####DISPLAYING SECRET_FILE_ID####"
@@ -36,3 +36,17 @@ pipeline {
 //                     def password = credentials.password
 // SECRET_FILE_ID = credentials('secret-file-id')
                     // use the username and password variables as needed
+
+//                     environment {
+//         // define variables to store the secret values
+//         SECRET_USERNAME = ""
+//         SECRET_PASSWORD = ""
+//     }
+//
+//     stages {
+//         stage('Get secret values') {
+//             steps {
+//                 // use the withCredentials step to get the secret values
+//                 withCredentials([file(credentialsId: 'my-secret-file', variable: 'SECRET_FILE')]) {
+//                     SECRET_USERNAME = sh(script: "cat ${SECRET_FILE} | grep -oP 'username=\\K.*'", returnStdout: true).trim()
+//                     SECRET_PASSWORD = sh(script: "cat ${SECRET_FILE} | grep -oP 'password=\\K.*'", returnStdout: true).trim()
