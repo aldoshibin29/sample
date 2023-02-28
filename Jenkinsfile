@@ -30,8 +30,8 @@ pipeline {
         print("checkprint")
         print "${SECRET_FILE_ID}"
         script{
-        withCredentials([file(credentialsId:'secret-file-id',usernameVariable: 'USERNAME',
-              passwordVariable: 'PASSWORD')]){
+        withCredentials([file(credentialsId:'secret-file-id',Variable: 'USERNAME',
+              Variable: 'PASSWORD')]){
             print 'USERNAME=' + username + 'PASSWORD=' + password
             print 'username.collect { it }=' + username.collect { it }
             print 'password.collect { it }=' + password.collect { it }
