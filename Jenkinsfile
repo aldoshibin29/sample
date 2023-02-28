@@ -9,10 +9,11 @@ pipeline {
     }
 
     stage('hello') {
-       environment {
-        SECRET_FILE_ID = withCredentials('secret-file-id')
-        }
+
       steps {
+        withCredentials([file(credentialsId: 'secret-file-id', variable: 'SECRET_FILE')]) {
+        SECRET_USERNAME = sh(script: "cat ${SECRET_FILE} | grep -oP 'username=\\K.*'", returnStdout: true).trim()
+        SECRET_PASSWORD = sh(script: "cat ${SECRET_FILE} | grep -oP 'password=\\K.*'", returnStdout: true).trim()
         echo "####DISPLAYING SECRET_FILE_ID####"
 	    echo "Global property file: ${SECRET_FILE_ID}"
 	    echo "Global property file: ${SECRET_FILE_ID.USER_PASSWORD}"
@@ -42,7 +43,9 @@ pipeline {
 //         SECRET_USERNAME = ""
 //         SECRET_PASSWORD = ""
 //     }
-//
+//environment {
+//         SECRET_FILE_ID = credentials('secret-file-id')
+//         }
 //     stages {
 //         stage('Get secret values') {
 //             steps {
