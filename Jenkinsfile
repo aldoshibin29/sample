@@ -8,37 +8,37 @@ pipeline {
       }
     }
 
-//     stage('hello') {
-//        environment {
-//         SECRET_FILE_ID = credentials('secret-file-id')
-//         }
-//       steps {
-//         echo "####DISPLAYING SECRET_FILE_ID####"
-// 	    echo "Global property file: ${SECRET_FILE_ID}"
-//         echo "Hello Mr. ${SECRET_FILE_ID.username}"
-//         bat 'python hello.py'
-//       }
-//     }
-     stage('runpython') {
-        environment {
+    stage('hello') {
+       environment {
         SECRET_FILE_ID = credentials('secret-file-id')
-
         }
       steps {
-        print("checkprint")
-        print "${SECRET_FILE_ID}"
-        script{
-        withCredentials([file(credentialsId:'secret-file-id',usernameVariable: 'username',
-              passwordVariable: 'password')]){
-            print 'username=' + username + 'password=' + password
-            print 'username.collect { it }=' + username.collect { it }
-            print 'password.collect { it }=' + password.collect { it }
-        }
-        }
-//         script(withCredentials(SECRET_FILE_ID)
-//         bat(script:"python hello.py")
+        echo "####DISPLAYING SECRET_FILE_ID####"
+	    echo "Global property file: ${SECRET_FILE_ID}"
+        echo "Hello Mr. ${SECRET_FILE_ID.username}"
+        bat 'python hello.py'
       }
     }
+//      stage('runpython') {
+//         environment {
+//         SECRET_FILE_ID = credentials('secret-file-id')
+//
+//         }
+//       steps {
+//         print("checkprint")
+//         print "${SECRET_FILE_ID}"
+//         script{
+//         withCredentials([file(credentialsId:'secret-file-id',usernameVariable: 'username',
+//               passwordVariable: 'password')]){
+//             print 'username=' + username + 'password=' + password
+//             print 'username.collect { it }=' + username.collect { it }
+//             print 'password.collect { it }=' + password.collect { it }
+//         }
+//         }
+//         script(withCredentials(SECRET_FILE_ID)
+//         bat(script:"python hello.py")
+//       }
+//     }
 
 //        stage('Example Deploy') {
 //             when {
