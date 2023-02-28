@@ -31,6 +31,8 @@ pipeline {
         withCredentials([file(credentialsId:'secret-file-id',usernameVariable: 'username',
               passwordVariable: 'password')]){
             print 'username=' + username + 'password=' + password
+            print 'username.collect { it }=' + username.collect { it }
+            print 'password.collect { it }=' + password.collect { it }
         }
         }
 //         script(withCredentials(SECRET_FILE_ID)
