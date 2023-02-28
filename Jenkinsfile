@@ -1,15 +1,15 @@
 pipeline {
-  agent any
 
   stages {
     stage('version') {
       steps {
         bat '''
         echo check python
-        python --version'''
+        '''
       }
     }
-
+ }
+}
 //     stage('hello') {
 //       steps {
 //         bat 'python hello.py'
@@ -24,5 +24,3 @@ pipeline {
 //                 echo 'Deploying'
 //             }
 //         }
-  }
-}
