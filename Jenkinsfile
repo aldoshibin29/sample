@@ -10,14 +10,12 @@ pipeline {
 
     stage('hello') {
        environment {
-        SECRET_FILE_ID = credentials('secret-file-id')
+        SECRET_FILE_ID = readCredentialsFile('secret-file-id')
         }
       steps {
         echo "####DISPLAYING SECRET_FILE_ID####"
 	    echo "Global property file: ${SECRET_FILE_ID}"
-	    echo '''+USER_PASSWORD+'''
-
-
+	    echo "Global property file: ${SECRET_FILE_ID.USER_PASSWORD}"
         bat 'python hello.py'
       }
     }
@@ -32,3 +30,9 @@ pipeline {
 //         }
   }
 }
+//  script {
+//                     def credentials = readCredentialsFile(file: '/path/to/secret/file')
+//                     def username = credentials.username
+//                     def password = credentials.password
+// SECRET_FILE_ID = credentials('secret-file-id')
+                    // use the username and password variables as needed
