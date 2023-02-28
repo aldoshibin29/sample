@@ -20,9 +20,13 @@ pipeline {
 //       }
 //     }
      stage('runpython') {
-
+        environment {
+        def SECRET_FILE_ID = credentials('secret-file-id')
+        print "${SECRET_FILE_ID}"
+        }
       steps {
         print("checkprint")
+
         bat(script:"python hello.py")
       }
     }
