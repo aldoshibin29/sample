@@ -1,15 +1,10 @@
 pipeline {
   agent any
-   environment {
 
-    PATH = "C:\\Windows\\System32"
-
-    }
   stages {
     stage('version') {
       steps {
         bat 'python --version'
-        echo "PATH is: ${env.PATH}"
       }
     }
 
