@@ -15,7 +15,7 @@ pipeline {
       steps {
         echo "####DISPLAYING SECRET_FILE_ID####"
 	    echo "Global property file: ${SECRET_FILE_ID}"
-
+        echo 'Hello Mr. ${SECRET_FILE_ID.username}'
         bat 'python hello.py'
       }
     }
