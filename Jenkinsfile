@@ -28,11 +28,9 @@ pipeline {
         print("checkprint")
         print "${SECRET_FILE_ID}"
         script{
-        withCredentials([file(credentialsId:'secret-file-id',variable:'testtt')]){
-            bat'''
-                echo "this $testtt"
-                echo "`cat $testtt`"
-            '''
+        withCredentials([file(credentialsId:'secret-file-id',usernameVariable: 'username',
+              passwordVariable: 'password'))]){
+            print 'username=' + username + 'password=' + password
         }
         }
 //         script(withCredentials(SECRET_FILE_ID)
