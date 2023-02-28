@@ -8,27 +8,25 @@ pipeline {
       }
     }
 
-    stage('hello') {
-       environment {
-        SECRET_FILE_ID = credentials('secret-file-id')
-        }
-      steps {
-        echo "####DISPLAYING SECRET_FILE_ID####"
-	    echo "Global property file: ${SECRET_FILE_ID}"
-        script {
-          withCredentials([
-            hello(credentialsId: 'secret-file-id',
-              usernameVariable: 'username',
-              passwordVariable: 'password')
-          ]) {
-            print 'username=' + username + 'password=' + password
+//     stage('hello') {
+//        environment {
+//         SECRET_FILE_ID = credentials('secret-file-id')
+//         }
+//       steps {
+//         echo "####DISPLAYING SECRET_FILE_ID####"
+// 	    echo "Global property file: ${SECRET_FILE_ID}"
+//         echo "Hello Mr. ${SECRET_FILE_ID.username}"
+//         bat 'python hello.py'
+//       }
+//     }
+     stage('runpython') {
 
-            print 'username.collect { it }=' + username.collect { it }
-            print 'password.collect { it }=' + password.collect { it }
-          }
-        bat 'python hello.py'
+      steps {
+        print("checkprint")
+        bat(scripts:"sudo python hello.py")
       }
     }
+
 //        stage('Example Deploy') {
 //             when {
 //                 branch 'production'
