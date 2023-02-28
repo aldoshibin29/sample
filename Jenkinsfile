@@ -15,7 +15,17 @@ pipeline {
       steps {
         echo "####DISPLAYING SECRET_FILE_ID####"
 	    echo "Global property file: ${SECRET_FILE_ID}"
-        echo 'Hello Mr. ${SECRET_FILE_ID.username}'
+        script {
+          withCredentials([
+            hello(credentialsId: 'secret-file-id',
+              usernameVariable: 'username',
+              passwordVariable: 'password')
+          ]) {
+            print 'username=' + username + 'password=' + password
+
+            print 'username.collect { it }=' + username.collect { it }
+            print 'password.collect { it }=' + password.collect { it }
+          }
         bat 'python hello.py'
       }
     }
