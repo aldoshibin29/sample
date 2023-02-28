@@ -2,7 +2,7 @@ pipeline {
   agent any
    environment {
 
-    PATH = "C:\Windows\System32"
+    PATH = "C:\\Windows\\System32"
 
     }
   stages {
