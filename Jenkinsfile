@@ -8,8 +8,8 @@ pipeline {
   stages {
     stage('version') {
       steps {
-        echo "PATH is: ${env.PATH}"
         bat 'python --version'
+        echo "PATH is: ${env.PATH}"
       }
     }
 
