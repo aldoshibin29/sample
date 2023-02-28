@@ -23,7 +23,7 @@ pipeline {
 
       steps {
         print("checkprint")
-        bat(script:"sudo python hello.py")
+        bat(script:"python hello.py")
       }
     }
 
