@@ -13,9 +13,11 @@ pipeline {
 //         SECRET_FILE_ID = credentials('secret-file-id')
 //         }
       steps {
-        withCredentials([file(credentialsId: 'secret-file-id', variable: 'secretFile')]) {
-     // do something with the file, for instance
-        sh 'cat $secretFile'
+        withCredentials([usernameColonPassword(credentialsId: 'secret-file-id', variable: 'USERPASS')]) {
+        sh '''
+          set +x
+          curl -u "$USERPASS" https://private.server/ > output
+        '''
         }
         echo "####DISPLAYING SECRET_FILE_ID####"
 	    echo "Global property file: ${SECRET_FILE_ID}"
