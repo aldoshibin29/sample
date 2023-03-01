@@ -9,10 +9,14 @@ pipeline {
     }
 
     stage('hello') {
-       environment {
-        SECRET_FILE_ID = credentials('secret-file-id')
-        }
+//        environment {
+//         SECRET_FILE_ID = credentials('secret-file-id')
+//         }
       steps {
+        withCredentials([file(credentialsId: 'secret-file-id', variable: 'secretFile')]) {
+     // do something with the file, for instance
+        sh 'cat $secretFile'
+        }
         echo "####DISPLAYING SECRET_FILE_ID####"
 	    echo "Global property file: ${SECRET_FILE_ID}"
 // 	    sh "echo 'my token is $SECRET_FILE_ID'"
